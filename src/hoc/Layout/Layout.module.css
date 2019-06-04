@@ -1,0 +1,15 @@
+.Layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.Header {
+  display: sticky;
+  width: 50%;
+  height: 100vh;
+}
+
+.Main {
+  width: 50%;
+  padding: 5rem;
+}

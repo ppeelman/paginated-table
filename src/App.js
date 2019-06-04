@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// External imports
+import React from "react";
+
+// Internal imports
+import "./App.css";
+import Layout from "./hoc/Layout/Layout";
+import Header from "./components/Header/Header";
+import ArtList from "./containers/ArtList/ArtList";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout header={<Header />}>
+        <ArtList />
+      </Layout>
     </div>
   );
 }

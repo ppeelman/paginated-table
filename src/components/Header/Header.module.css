@@ -1,0 +1,47 @@
+/* ========================================== *\
+  
+   Structure
+   ---------
+      .Header
+        .HeaderText
+            .subTitle
+            .mainTitle
+
+
+\* ========================================== */
+
+.Hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      to right top,
+      rgba(13, 71, 161, 0.8),
+      rgba(33, 150, 243, 0.4)
+    ),
+    url(../../assets/images/hero.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.HeaderText {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 3rem;
+  text-align: left;
+  color: var(--color-grey-light-1);
+  font-weight: 300;
+}
+
+.HeaderText > * {
+  display: block; /* To create a line-break between both title elements */
+}
+
+.subTitle {
+  font-size: 4rem;
+}
+
+.mainTitle {
+  font-size: 8rem;
+}
