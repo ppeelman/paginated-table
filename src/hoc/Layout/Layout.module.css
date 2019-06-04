@@ -4,12 +4,14 @@
 }
 
 .Header {
-  display: sticky;
+  position: sticky;
   width: 50%;
   height: 100vh;
 }
 
 .Main {
   width: 50%;
+  height: 100vh;
+  overflow: scroll;
   padding: 5rem;
 }

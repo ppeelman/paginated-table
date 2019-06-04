@@ -1,0 +1,3 @@
+export const LIST_ART_START = "LIST_ALL_START";
+export const LIST_ART_SUCCESS = "LIST_ALL_SUCCESS";
+export const LIST_ART_FAIL = "LIST_ALL_FAIL";
