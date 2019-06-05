@@ -10,19 +10,20 @@ import { Route, Switch } from "react-router-dom";
 
 // Internal imports
 import "./App.css";
-import Layout from "./hoc/Layout/Layout";
-import Header from "./components/Header/Header";
-import ArtList from "./containers/ArtList/ArtList";
+import Homepage from "./components/Homepage/Homepage";
+import ArtDetail from "./containers/ArtDetail/ArtDetail";
 
 function App() {
   return (
     <div className="App">
-      <Layout header={<Header />}>
-        <Switch>
-          <Route path="/" exact component={ArtList} />
-          <Route path="/:objectNumber" exact component={ArtList} />
-        </Switch>
-      </Layout>
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={routeProps => <Homepage routeProps={routeProps} />}
+        />
+        <Route path="/collection/:objectNumber" exact component={ArtDetail} />
+      </Switch>
     </div>
   );
 }

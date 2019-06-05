@@ -30,35 +30,45 @@ class ArtList extends Component {
     /* Following the AirBnb React styleguide:
      "Bind event handlers for the render method in the constructor! 
      ( A bind call in the render path creates a brand new function on every single render. Do not use arrow functions in class fields, because it makes them challenging to test and debug, and can negatively impact performance, and because conceptually, class fields are for data, not logic. )" */
-    this.artItemCLickedHandler = this.artItemClickedHandler.bind(this);
+    this.getArt = this.getArt.bind(this);
+    this.areItemsInCache = this.areItemsInCache.bind(this);
+    this.artItemClickedHandler = this.artItemClickedHandler.bind(this);
     this.paginationHandler = this.paginationHandler.bind(this);
   }
 
   componentDidMount() {
-    // After we mount the component, perform a GET request to get the list of art items
-    this.props.onListArt(this.state.pageIndex, this.ROWS_PER_PAGE);
+    this.getArt();
   }
 
-  paginationHandler(event, newPage) {
-    this.setState({ pageIndex: newPage });
+  getArt(pageIndex = this.state.pageIndex) {
+    if (!this.areItemsInCache(pageIndex)) {
+      // Dispatch an action (Redux)
+      this.props.getListArt(pageIndex, this.ROWS_PER_PAGE);
+    }
+  }
 
-    // Implementation of our 'CACHE' logic
+  // Returns false if the 'cache' is empty
+  areItemsInCache(pageIndex) {
     for (let artItem of this.props.artList) {
       // If the requested pageNumber is already in our Redux state variable 'artList',
       // we return so we avoid executing the next statement, which is sending a new GET request
       // => by using a for loop & if statement, we don't necessarily have to iterate over the whole array to finish
-      if (artItem.pageNumber === newPage) {
-        return;
+      if (artItem.pageNumber === pageIndex) {
+        return true;
       }
     }
+    return false;
+  }
 
-    this.props.onListArt(newPage, this.ROWS_PER_PAGE);
+  paginationHandler(event, newPage) {
+    this.setState({ pageIndex: newPage });
+    this.getArt(newPage);
   }
 
   artItemClickedHandler(objectNumber) {
     // Push a new URL (consisting of the objectNumber variable) to the 'stack'
     // Using this method, we still allow the use of the back button by the user
-    this.props.history.push(`/${objectNumber}`);
+    this.props.history.push(`/collection/${objectNumber}`);
   }
 
   render() {
@@ -104,15 +114,15 @@ class ArtList extends Component {
 
 const mapStateToProps = state => {
   return {
-    loading: state.loading,
-    artList: state.artList,
-    error: state.error
+    loading: state.listArt.loading,
+    artList: state.listArt.artList,
+    error: state.listArt.error
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onListArt: (pageIndex, rowsPerPage) =>
+    getListArt: (pageIndex, rowsPerPage) =>
       dispatch(actions.listArt(pageIndex, rowsPerPage))
   };
 };

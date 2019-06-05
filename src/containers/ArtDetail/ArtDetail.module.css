@@ -1,0 +1,104 @@
+.Container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.Line {
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background-color: #0d47a1;
+}
+
+.PaintingContainer {
+  height: 100vh;
+  padding: 2rem 1.5rem 2rem 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PaintingImage {
+  max-height: 90vh;
+  max-width: 50vw;
+}
+
+.Metadata {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Top,
+.Bottom {
+  padding: 0 2rem 0 1.5rem;
+}
+
+.Top {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: bottom;
+}
+
+.Bottom {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: bottom;
+}
+
+.Top h2 {
+  margin-bottom: 0.5rem;
+}
+
+.Top h1 {
+  margin-bottom: 1rem;
+}
+
+.Top h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 50%);
+  text-align: left;
+}
+
+.Top h1 {
+  font-size: 30px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 87%);
+  text-align: left;
+}
+
+.Bottom {
+  width: 100%;
+  height: 50vh;
+}
+
+.Details,
+.Description {
+  margin-top: 1rem;
+}
+
+.Details {
+  font-weight: 300;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 50%);
+  text-align: center;
+}
+
+.Description {
+  font-weight: 300;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 87%);
+  text-align: left;
+  margin-top: 25px;
+}

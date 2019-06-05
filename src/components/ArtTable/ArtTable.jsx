@@ -19,7 +19,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 function ArtTable({ artList, pageIndex, rowClicked, paginationClicked }) {
   const ROWS_PER_PAGE = 10;
 
-  const TABLE_HEAD_LABELS = ["Thumbnail", "Title", "Title"];
+  const TABLE_HEAD_LABELS = ["Thumbnail", "Title", "Artist"];
 
   /* ======================*\
      Content of the table
@@ -28,6 +28,7 @@ function ArtTable({ artList, pageIndex, rowClicked, paginationClicked }) {
   const headCells = TABLE_HEAD_LABELS.map(label => {
     return (
       <TableCell
+        key={label}
         style={{
           color: "white"
         }}
@@ -66,7 +67,7 @@ function ArtTable({ artList, pageIndex, rowClicked, paginationClicked }) {
       <Table>
         <TableHead
           style={{
-            backgroundColor: "rgba(0, 0, 0, 0.87)"
+            backgroundColor: "#0d47a1"
           }}
         >
           <TableRow>{headCells}</TableRow>
