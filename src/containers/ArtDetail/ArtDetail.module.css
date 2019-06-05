@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  background-color: var(--color-grey-light-1);
 }
 
 .Line {
@@ -13,9 +14,17 @@
   background-color: #0d47a1;
 }
 
+.Loading {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .PaintingContainer {
   height: 100vh;
-  padding: 2rem 1.5rem 2rem 2rem;
+  padding: 2rem 7%;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -30,12 +39,9 @@
 .Metadata {
   height: 100vh;
   display: flex;
+  padding: 0 7%;
+  flex-grow: 1;
   flex-direction: column;
-}
-
-.Top,
-.Bottom {
-  padding: 0 2rem 0 1.5rem;
 }
 
 .Top {
@@ -44,7 +50,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: bottom;
 }
 
 .Bottom {
@@ -92,7 +97,7 @@
   font-weight: 300;
   font-size: 15px;
   color: rgba(0, 0, 0, 50%);
-  text-align: center;
+  text-align: left;
 }
 
 .Description {

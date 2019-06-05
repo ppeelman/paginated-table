@@ -35,19 +35,21 @@ export const getArtDetail = objectNumber => {
       .then(response => response.json())
       .then(data => {
         const {
+          objectNumber,
           title,
           principalMaker: artist,
           description,
           subTitle: detail,
-          webImage: { url: image }
+          webImage: { url }
         } = data.artObject;
 
         return {
+          objectNumber,
           title,
           artist,
           detail,
           description,
-          image
+          image: url ? url.replace("s0", "h800") : null
         };
       })
       .then(artDetail => dispatch(getArtDetailSuccess(artDetail)))

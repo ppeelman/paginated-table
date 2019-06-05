@@ -30,7 +30,7 @@ export const listArt = (pageNumber, numberOfResultsPerPage = 10) => {
     // We increment the pageNumber with 1 because the Rijksmuseum API starts counting at 1, not 0
     const apiPageNumber = pageNumber + 1;
 
-    const url = `https://www.rijksmuseum.nl/api/${langCode}/collection?key=${API_KEY}&format=json&ps=${numberOfResultsPerPage}&p=${apiPageNumber}`;
+    const url = `https://www.rijksmuseum.nl/api/${langCode}/collection?key=${API_KEY}&format=json&ps=${numberOfResultsPerPage}&p=${apiPageNumber}&toppieces=True`;
 
     fetch(url)
       .then(response => response.json())

@@ -16,7 +16,9 @@ const getArtDetailStart = (state, action) => {
 const getArtDetailSuccess = (state, action) => {
   return {
     ...state,
-    artDetail: action.artDetail,
+    artDetail: Object.assign(state.artDetail, {
+      [action.artDetail.objectNumber]: action.artDetail
+    }),
     loading: false,
     error: null
   };
