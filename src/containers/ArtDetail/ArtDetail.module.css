@@ -24,7 +24,7 @@
 
 .PaintingContainer {
   height: 100vh;
-  padding: 2rem 7%;
+  padding: 2rem 7% 2rem 3.5%;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
 .Metadata {
   height: 100vh;
   display: flex;
-  padding: 0 7%;
+  padding: 0 3.5% 0 7%;
   flex-grow: 1;
   flex-direction: column;
 }
