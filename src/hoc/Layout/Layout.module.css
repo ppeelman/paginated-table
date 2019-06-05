@@ -13,5 +13,6 @@
   width: 50%;
   height: 100vh;
   overflow: scroll;
-  padding: 5rem;
+  padding: 3rem;
+  background-color: var(--color-grey-light-1);
 }

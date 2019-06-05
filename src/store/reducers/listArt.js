@@ -17,12 +17,17 @@ const listArtSuccess = (state, action) => {
   return {
     ...state,
     loading: false,
-    artList: action.artList
+    artList: state.artList.concat(action.artList),
+    error: null
   };
 };
 
 const listArtFail = (state, action) => {
-  return {};
+  return {
+    ...state,
+    loading: false,
+    error: action.error
+  };
 };
 
 const reducer = (state = initialState, action) => {

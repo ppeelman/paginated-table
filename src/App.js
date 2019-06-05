@@ -1,5 +1,12 @@
-// External imports
+/* ===== *\
+   React
+\* ===== */
 import React from "react";
+
+/* =========== *\
+   react-router
+\* =========== */
+import { Route, Switch } from "react-router-dom";
 
 // Internal imports
 import "./App.css";
@@ -11,7 +18,10 @@ function App() {
   return (
     <div className="App">
       <Layout header={<Header />}>
-        <ArtList />
+        <Switch>
+          <Route path="/" exact component={ArtList} />
+          <Route path="/:objectNumber" exact component={ArtList} />
+        </Switch>
       </Layout>
     </div>
   );
