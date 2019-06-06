@@ -1,16 +1,26 @@
 /* ===== *\
    React
 \* ===== */
-import React from "react";
+import React, { Suspense } from "react";
 
 /* =========== *\
    react-router
 \* =========== */
 import { Route, Switch } from "react-router-dom";
 
-// Internal imports
+/* =========== *\
+   Material-UI
+\* =========== */
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+/* ================ *\
+   Internal imports
+\* ================ */
 import Homepage from "./components/Homepage/Homepage";
-import ArtDetailContainer from "./containers/ArtDetailContainer/ArtDetailContainer";
+// Lazy loading
+const ArtDetailContainer = React.lazy(() =>
+  import("./containers/ArtDetailContainer/ArtDetailContainer")
+);
 
 function App() {
   /* 3 routes:
@@ -31,7 +41,11 @@ function App() {
         <Route
           path="/collection/:objectNumber"
           exact
-          component={ArtDetailContainer}
+          render={routeProps => (
+            <Suspense fallback={<CircularProgress size={100} />}>
+              <ArtDetailContainer {...routeProps} />
+            </Suspense>
+          )}
         />
         <Route render={routeProps => <Homepage routeProps={routeProps} />} />
       </Switch>

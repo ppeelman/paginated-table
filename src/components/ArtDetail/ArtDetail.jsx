@@ -12,21 +12,24 @@ const AdapterLink = React.forwardRef((props, ref) => (
 const ArtDetail = ({ artist, title, detail, description, image }) => {
   return (
     <div className={styles.Container}>
-      <Button
-        variant="contained"
-        color="primary"
-        component={AdapterLink}
-        to="/"
-        className={styles.GoBackButton}
-      >
-        Back
-      </Button>
       <div className={styles.Line} />
 
       <div className={styles.Metadata}>
         <div className={styles.Top}>
-          <h2>{artist}</h2>
-          <h1>{title}</h1>
+          <div className={styles.GoBackButton}>
+            <Button
+              variant="contained"
+              color="primary"
+              component={AdapterLink}
+              to="/"
+            >
+              &lt;&nbsp;Back
+            </Button>
+          </div>
+          <div>
+            <h2>{artist}</h2>
+            <h1>{title}</h1>
+          </div>
         </div>
         <div className={styles.Bottom}>
           <p className={styles.Details}>{detail}</p>
