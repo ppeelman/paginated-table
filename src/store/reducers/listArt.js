@@ -1,9 +1,10 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  artList: [],
+  artList: {},
   error: null,
-  loading: false
+  loading: false,
+  currentPage: null
 };
 
 const listArtStart = (state, action) => {
@@ -17,8 +18,9 @@ const listArtSuccess = (state, action) => {
   return {
     ...state,
     loading: false,
-    artList: state.artList.concat(action.artList),
-    error: null
+    artList: Object.assign(state.artList, action.artList),
+    error: null,
+    currentPage: action.pageNumber
   };
 };
 

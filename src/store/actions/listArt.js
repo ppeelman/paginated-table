@@ -5,10 +5,11 @@ export const listArtStart = () => {
     type: actionTypes.LIST_ART_START
   };
 };
-export const listArtSuccess = artList => {
+export const listArtSuccess = (pageNumber, artList) => {
   return {
     type: actionTypes.LIST_ART_SUCCESS,
-    artList
+    artList: { [pageNumber]: artList },
+    pageNumber
   };
 };
 
@@ -56,7 +57,9 @@ export const listArt = (pageNumber, numberOfResultsPerPage = 10) => {
           };
         });
       })
-      .then(artList => dispatch(listArtSuccess(artList)))
+      .then(artList => {
+        dispatch(listArtSuccess(pageNumber, artList));
+      })
       .catch(error => dispatch(listArtFail(error)));
   };
 };

@@ -49,7 +49,7 @@ export const getArtDetail = objectNumber => {
           artist,
           detail,
           description,
-          image: url ? url.replace("s0", "h800") : null
+          image: url ? url.replace("s0", "h500") : null
         };
       })
       .then(artDetail => dispatch(getArtDetailSuccess(artDetail)))

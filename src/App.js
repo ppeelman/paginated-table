@@ -9,11 +9,17 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 // Internal imports
-import "./App.css";
 import Homepage from "./components/Homepage/Homepage";
-import ArtDetail from "./containers/ArtDetail/ArtDetail";
+import ArtDetailContainer from "./containers/ArtDetailContainer/ArtDetailContainer";
 
 function App() {
+  /* 3 routes:
+   -----------
+   1. At the root URL, we navigate to the Homepage
+   2. At /collection/:objectNumber URLs, we navigate to the ArtDetail page
+   3. For other cases not matched by 1) and 2), we load the Homepage again 
+*/
+
   return (
     <div className="App">
       <Switch>
@@ -22,7 +28,12 @@ function App() {
           exact
           render={routeProps => <Homepage routeProps={routeProps} />}
         />
-        <Route path="/collection/:objectNumber" exact component={ArtDetail} />
+        <Route
+          path="/collection/:objectNumber"
+          exact
+          component={ArtDetailContainer}
+        />
+        <Route render={routeProps => <Homepage routeProps={routeProps} />} />
       </Switch>
     </div>
   );

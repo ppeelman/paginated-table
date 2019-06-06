@@ -16,7 +16,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 
-function ArtTable({ artList, pageIndex, rowClicked, paginationClicked }) {
+function ArtList({ artList, pageIndex, rowClicked, paginationClicked }) {
   const ROWS_PER_PAGE = 10;
 
   const TABLE_HEAD_LABELS = ["Thumbnail", "Title", "Artist"];
@@ -91,4 +91,4 @@ function ArtTable({ artList, pageIndex, rowClicked, paginationClicked }) {
   );
 }
 
-export default ArtTable;
+export default ArtList;

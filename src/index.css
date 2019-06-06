@@ -24,3 +24,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 55%;
+  }
+}

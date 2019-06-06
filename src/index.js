@@ -10,12 +10,14 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import listArtReducer from "./store/reducers/listArt.js";
-import getArtDetailReducer from "./store/reducers/artDetail.js";
+import artDetailReducer from "./store/reducers/artDetail.js";
 
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+// Redux devtool extension
+// https://github.com/zalmoxisus/redux-devtools-extension
 const composeEnhancers =
   process.env.NODE_ENV === "development"
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -23,9 +25,10 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   listArt: listArtReducer,
-  artDetail: getArtDetailReducer
+  artDetail: artDetailReducer
 });
 
+// Apply 'thunk' as middleware to allow asynchronous actions (such as HTTP requests)
 const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))

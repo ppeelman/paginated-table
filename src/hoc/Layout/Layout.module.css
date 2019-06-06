@@ -3,16 +3,38 @@
   flex-direction: row;
 }
 
-.Header {
-  position: sticky;
+.Header,
+.Main {
   width: 50%;
   height: 100vh;
 }
 
+/* (1) A sticky header takes up space in the normal flow of the page (<-> absolute positioning) */
+.Header {
+  position: sticky; /* (1) */
+}
+
 .Main {
-  width: 50%;
-  height: 100vh;
-  overflow: scroll;
-  padding: 3rem;
+  overflow: auto;
+  padding: 1rem;
   background-color: var(--color-grey-light-1);
+}
+
+@media screen and (max-width: 1024px) {
+  .Layout {
+    flex-direction: column;
+  }
+
+  .Header,
+  .Main {
+    width: 100%;
+  }
+
+  .Header {
+    height: 33.3vh;
+  }
+
+  .Main {
+    height: auto;
+  }
 }

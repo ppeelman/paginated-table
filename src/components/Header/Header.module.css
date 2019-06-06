@@ -26,22 +26,22 @@
 
 .HeaderText {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  margin: 3rem;
+  left: 1.5rem;
+  bottom: 1rem;
   text-align: left;
   color: var(--color-grey-light-1);
   font-weight: 300;
 }
 
-.HeaderText > * {
+.subTitle,
+.mainTitle {
   display: block; /* To create a line-break between both title elements */
 }
 
 .subTitle {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .mainTitle {
-  font-size: 5rem;
+  font-size: 4rem;
 }
