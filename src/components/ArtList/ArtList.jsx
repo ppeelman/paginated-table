@@ -78,7 +78,6 @@ function ArtList({ artList, pageIndex, rowClicked, paginationClicked }) {
             <TablePagination
               page={pageIndex}
               rowsPerPage={ROWS_PER_PAGE}
-              // No idea how many records there are, no easy way to find out. So taking a high enough number (= 10000)
               count={670920}
               // Passing an empty array, omits the option for the user to choose a number of rows per page
               rowsPerPageOptions={[]}

@@ -20,7 +20,7 @@ class ArtListContainer extends Component {
 
     // We store the index for pagination in the component state (not REDUX)
     this.state = {
-      pageIndex: this.props.pageIndex
+      pageIndex: this.props.pageIndex || 0
     };
 
     /* Following the AirBnb React styleguide:

@@ -11,14 +11,12 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 class LoadResourcesContainer extends Component {
   componentDidMount() {
     if (!this.itemInCache()) {
-      console.log("componentDidMount - fetching Resources");
       this.fetchResources();
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (!this.props.loading && !this.itemInCache()) {
-      console.log("componentDidUpdate - fetching Resources");
       this.fetchResources();
     }
   }
@@ -39,14 +37,14 @@ class LoadResourcesContainer extends Component {
     // Default: show a loading indicator
     const styling = {
       display: "flex",
-      width: "100%",
       height: "100%",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      marginTop: "5rem"
     };
     let toRender = (
       <div style={styling}>
-        <CircularProgress size={100} />;
+        <CircularProgress size={100} />
       </div>
     );
 

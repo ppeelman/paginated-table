@@ -1,11 +1,26 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+
 import styles from "./ArtDetail.module.css";
 
+const AdapterLink = React.forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} />
+));
+
 const ArtDetail = ({ artist, title, detail, description, image }) => {
-  console.log(artist);
   return (
     <div className={styles.Container}>
+      <Button
+        variant="contained"
+        color="primary"
+        component={AdapterLink}
+        to="/"
+        className={styles.GoBackButton}
+      >
+        Back
+      </Button>
       <div className={styles.Line} />
 
       <div className={styles.Metadata}>
