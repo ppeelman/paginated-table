@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
    Material-UI
 \* =========== */
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Snackbar from "@material-ui/core/Snackbar";
 
 import styles from "./LoadResources.module.css";
 
@@ -57,7 +58,19 @@ class LoadResourcesContainer extends Component {
 
     // If an error is present, show the error
     if (this.props.error) {
-      toRender = <p>{this.props.error.message}</p>;
+      console.log("error");
+      toRender = (
+        <Snackbar
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center"
+          }}
+          open
+          onClose={() => {}}
+          autoHideDuration={6000}
+          message={this.props.error.message}
+        />
+      );
     }
 
     return toRender;

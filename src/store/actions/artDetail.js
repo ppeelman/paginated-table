@@ -40,7 +40,7 @@ export const getArtDetail = objectNumber => {
           principalMaker: artist,
           description,
           subTitle: detail,
-          webImage: { url }
+          webImage: image
         } = data.artObject;
 
         return {
@@ -49,7 +49,7 @@ export const getArtDetail = objectNumber => {
           artist,
           detail,
           description,
-          image: url ? url.replace("s0", "h500") : null
+          image: image.url ? image.url.replace("s0", "h500") : null
         };
       })
       .then(artDetail => dispatch(getArtDetailSuccess(artDetail)))

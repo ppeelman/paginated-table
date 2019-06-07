@@ -52,7 +52,6 @@ function ArtList({ artList, pageIndex, rowClicked, paginationClicked }) {
           style={{ cursor: "pointer" }}
         >
           <TableCell>
-            {/* If there is no image, we return null */}
             {preview ? <img src={preview} alt={`Preview of ${title}`} /> : null}
           </TableCell>
           <TableCell style={{ fontWeight: "300" }}>{title}</TableCell>
