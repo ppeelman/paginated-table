@@ -52,7 +52,7 @@ function ArtList({ artList, pageIndex, rowClicked, paginationClicked }) {
           style={{ cursor: "pointer" }}
         >
           <TableCell>
-            {preview ? <img src={preview} alt={`Preview of ${title}`} /> : null}
+            {preview ? <img src={preview} alt={`Preview`} /> : null}
           </TableCell>
           <TableCell style={{ fontWeight: "300" }}>{title}</TableCell>
           <TableCell style={{ fontWeight: "300" }}>{artist}</TableCell>
