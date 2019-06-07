@@ -2,27 +2,36 @@
    React
 \* ===== */
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 /* =========== *\
    Material-UI
 \* =========== */
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+import styles from "./LoadResources.module.css";
+
 class LoadResourcesContainer extends Component {
   componentDidMount() {
-    if (!this.itemInCache()) {
-      this.fetchResources();
-    }
+    this.verifyLoadResource();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!this.props.loading && !this.itemInCache()) {
-      this.fetchResources();
+    this.verifyLoadResource();
+  }
+
+  verifyLoadResource() {
+    if (this.loadResourceNeeded()) {
+      this.loadResources();
     }
   }
 
-  fetchResources() {
-    this.props.fetchFunction();
+  loadResourceNeeded() {
+    return !this.props.loading && !this.props.error && !this.itemInCache();
+  }
+
+  loadResources() {
+    this.props.loadFunction();
   }
 
   getResourceFromCache() {
@@ -35,15 +44,8 @@ class LoadResourcesContainer extends Component {
 
   render() {
     // Default: show a loading indicator
-    const styling = {
-      display: "flex",
-      height: "100%",
-      alignItems: "center",
-      justifyContent: "center",
-      marginTop: "5rem"
-    };
     let toRender = (
-      <div style={styling}>
+      <div className={styles.LoadingContainer}>
         <CircularProgress size={100} />
       </div>
     );
@@ -61,5 +63,13 @@ class LoadResourcesContainer extends Component {
     return toRender;
   }
 }
+
+LoadResourcesContainer.propTypes = {
+  dataLocation: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.object,
+  loadFunction: PropTypes.func.isRequired,
+  render: PropTypes.func.isRequired
+};
 
 export default LoadResourcesContainer;

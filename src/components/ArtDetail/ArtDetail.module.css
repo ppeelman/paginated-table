@@ -103,10 +103,11 @@
 
 .Description {
   font-weight: 300;
-  font-size: 13px;
+  font-size: 1rem;
   color: rgba(0, 0, 0, 87%);
   text-align: left;
   margin-top: 25px;
+  line-height: 1.3rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -119,12 +120,8 @@
   }
 
   .GoBackButton {
-    /* position: absolute;
-    bottom: -30px;
-
-    left: 50%;
-    transform: translateX(-50%); */
     text-align: right;
+    margin-bottom: 1rem;
   }
 
   .PaintingContainer {

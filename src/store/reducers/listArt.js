@@ -4,7 +4,7 @@ const initialState = {
   artList: {},
   error: null,
   loading: false,
-  currentPage: null
+  currentPage: 0
 };
 
 const listArtStart = (state, action) => {
@@ -19,8 +19,7 @@ const listArtSuccess = (state, action) => {
     ...state,
     loading: false,
     artList: Object.assign(state.artList, action.artList),
-    error: null,
-    currentPage: action.pageNumber
+    error: null
   };
 };
 
@@ -32,6 +31,13 @@ const listArtFail = (state, action) => {
   };
 };
 
+const changePage = (state, action) => {
+  return {
+    ...state,
+    currentPage: action.newPage
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LIST_ART_START:
@@ -40,6 +46,8 @@ const reducer = (state = initialState, action) => {
       return listArtSuccess(state, action);
     case actionTypes.LIST_ART_FAIL:
       return listArtFail(state, action);
+    case actionTypes.CHANGE_PAGE:
+      return changePage(state, action);
     default:
       return state;
   }

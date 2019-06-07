@@ -36,9 +36,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter
-    //basename="/paginated-table-github-pages"
-    >
+    <BrowserRouter basename="/paginated-table-github-pages">
       <App />
     </BrowserRouter>
   </Provider>,

@@ -1,4 +1,8 @@
+/* ===== *\
+   React
+\* ===== */
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 /* ============= *\
    Redux related
@@ -22,7 +26,7 @@ class ArtDetailContainer extends Component {
   render() {
     return (
       <LoadResources
-        fetchFunction={() => this.props.getArtDetail(this.objectNumber)}
+        loadFunction={() => this.props.getArtDetail(this.objectNumber)}
         dataLocation={this.props.artDetail[this.objectNumber]}
         render={dataList => <ArtDetail {...dataList} />}
         error={this.props.error}
@@ -31,6 +35,19 @@ class ArtDetailContainer extends Component {
     );
   }
 }
+
+ArtDetailContainer.propTypes = {
+  // Redux props
+  artDetail: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.object,
+  getArtDetail: PropTypes.func.isRequired,
+
+  // React-router props
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => {
   return {

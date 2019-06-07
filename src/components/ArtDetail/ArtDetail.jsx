@@ -1,8 +1,20 @@
+/* ===== *\
+   React
+\* ===== */
 import React from "react";
+import PropTypes from "prop-types";
 
+/* ============ *\
+   React-router
+\* ============ */
 import { Link } from "react-router-dom";
+
+/* =========== *\
+   Material-UI
+\* =========== */
 import Button from "@material-ui/core/Button";
 
+// Internal imports
 import styles from "./ArtDetail.module.css";
 
 const AdapterLink = React.forwardRef((props, ref) => (
@@ -32,8 +44,10 @@ const ArtDetail = ({ artist, title, detail, description, image }) => {
           </div>
         </div>
         <div className={styles.Bottom}>
-          <p className={styles.Details}>{detail}</p>
-          <p className={styles.Description}>{description}</p>
+          {detail ? <p className={styles.Details}>{detail}</p> : null}
+          {description ? (
+            <p className={styles.Description}>{description}</p>
+          ) : null}
         </div>
       </div>
       <div className={styles.PaintingContainer}>
@@ -41,6 +55,14 @@ const ArtDetail = ({ artist, title, detail, description, image }) => {
       </div>
     </div>
   );
+};
+
+ArtDetail.propTypes = {
+  artist: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  detail: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string
 };
 
 export default ArtDetail;

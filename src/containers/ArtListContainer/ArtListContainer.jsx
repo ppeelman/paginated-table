@@ -2,6 +2,7 @@
    React
 \* ===== */
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 /* ============= *\
    Redux related
@@ -17,11 +18,9 @@ class ArtListContainer extends Component {
     super(props);
 
     this.ROWS_PER_PAGE = 10;
-
-    // We store the index for pagination in the component state (not REDUX)
-    this.state = {
-      pageIndex: this.props.pageIndex || 0
-    };
+    /* With every GET request, we get enough art data for 10 table pages because
+     there is almost no performance disadvantage when querying more record */
+    this.NUMBER_OF_PAGES_PRELOAD = 10;
 
     /* Following the AirBnb React styleguide:
      "Bind event handlers for the render method in the constructor! 
@@ -31,8 +30,7 @@ class ArtListContainer extends Component {
   }
 
   paginationHandler(event, newPage) {
-    this.setState({ pageIndex: newPage });
-    //this.getArt(newPage);
+    this.props.onChangePage(newPage);
   }
 
   artItemClickedHandler(objectNumber) {
@@ -44,14 +42,18 @@ class ArtListContainer extends Component {
   render() {
     return (
       <LoadResources
-        fetchFunction={() =>
-          this.props.getListArt(this.state.pageIndex, this.ROWS_PER_PAGE)
+        loadFunction={() =>
+          this.props.getListArt(
+            this.props.pageIndex,
+            this.ROWS_PER_PAGE,
+            this.NUMBER_OF_PAGES_PRELOAD
+          )
         }
-        dataLocation={this.props.artList[this.state.pageIndex]}
+        dataLocation={this.props.artList[this.props.pageIndex]}
         render={dataList => (
           <ArtList
             artList={dataList}
-            pageIndex={this.state.pageIndex}
+            pageIndex={this.props.pageIndex}
             rowClicked={this.artItemClickedHandler}
             paginationClicked={this.paginationHandler}
           />
@@ -62,6 +64,21 @@ class ArtListContainer extends Component {
     );
   }
 }
+
+ArtListContainer.propTypes = {
+  // Redux props
+  loading: PropTypes.bool.isRequired,
+  artList: PropTypes.object.isRequired,
+  error: PropTypes.object,
+  pageIndex: PropTypes.number.isRequired,
+  getListArt: PropTypes.func.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+
+  // React-router props
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => {
   return {
@@ -74,8 +91,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getListArt: (pageIndex, rowsPerPage) =>
-      dispatch(actions.listArt(pageIndex, rowsPerPage))
+    getListArt: (pageIndex, rowsPerPage, pagesToFetch) =>
+      dispatch(actions.listArt(pageIndex, rowsPerPage, pagesToFetch)),
+    onChangePage: newPage => dispatch(actions.changePage(newPage))
   };
 };
 

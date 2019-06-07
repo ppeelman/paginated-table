@@ -2,6 +2,7 @@
    React
 \* ===== */
 import React from "react";
+import PropTypes from "prop-types";
 
 /* =========== *\
    Material-UI
@@ -40,9 +41,9 @@ function ArtList({ artList, pageIndex, rowClicked, paginationClicked }) {
 
   const bodyRows = artList
     // Only take the items corresponding to the current page index
-    .filter(({ pageNumber }) => pageNumber === pageIndex)
+    /* .filter(({ pageNumber }) => pageNumber === pageIndex) */
     // Generate the required JSX elements
-    .map(({ pageNumber, objectNumber, preview, title, artist }) => {
+    .map(({ objectNumber, preview, title, artist }) => {
       return (
         <TableRow
           hover
@@ -52,9 +53,7 @@ function ArtList({ artList, pageIndex, rowClicked, paginationClicked }) {
         >
           <TableCell>
             {/* If there is no image, we return null */}
-            {preview ? (
-              <img src={preview} alt={`Preview of ${title} by ${artist}`} />
-            ) : null}
+            {preview ? <img src={preview} alt={`Preview of ${title}`} /> : null}
           </TableCell>
           <TableCell style={{ fontWeight: "300" }}>{title}</TableCell>
           <TableCell style={{ fontWeight: "300" }}>{artist}</TableCell>
@@ -89,5 +88,12 @@ function ArtList({ artList, pageIndex, rowClicked, paginationClicked }) {
     </Paper>
   );
 }
+
+ArtList.propTypes = {
+  artList: PropTypes.array.isRequired,
+  pageIndex: PropTypes.number.isRequired,
+  rowClicked: PropTypes.func.isRequired,
+  paginationClicked: PropTypes.func.isRequired
+};
 
 export default ArtList;
