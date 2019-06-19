@@ -1,3 +1,6 @@
+Demo-project developed during 4 days for a job application
+
+## URL
 https://ppeelman.github.io/paginated-table-github-pages/
 
 
